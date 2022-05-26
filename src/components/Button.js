@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export function Button({ onPress }) {
   return (

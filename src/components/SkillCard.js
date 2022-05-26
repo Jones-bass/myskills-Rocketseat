@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable prettier/prettier */
+import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export function SkillCard({ skill }) {
@@ -11,14 +12,14 @@ export function SkillCard({ skill }) {
 
 const styles = StyleSheet.create({
   buttonSkill: {
-    backgroundColor: '1F1E45',
+    backgroundColor: '#1F1E45',
     padding: 15,
     borderRadius: 20,
     margin: 5,
-    alignItems: "center",
+    alignItems: 'center',
   },
   textSkill: {
-    color: "#FFF",
+    color: '#FFF',
     fontSize: 22,
     fontWeight: 'bold',
   },
