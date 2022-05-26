@@ -4,14 +4,30 @@ import { View, StyleSheet, Text, TextInput, FlatList } from 'react-native';
 import { Button } from '../components/Button';
 import { SkillCard } from '../components/SkillCard';
 
+interface SkillData {
+  id: string,
+  name: string,
+}
+
 export function Home() {
   const [newSkill, setNewSkill] = useState(); //Armazenar novas skills
-  const [mySkills, setMySkills] = useState([]); //Armazenar skills
+  const [mySkills, setMySkills] = useState<SkillData[]>([]); //Armazenar skills
   const [gretting, setGretting] = useState(''); //Armazenar skills
 
   function handleAddNewSkill() {
-    setMySkills((oldState) => [...oldState, newSkill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill
+    }
+    setMySkills(oldState => [...oldState, data]);
   }
+
+  function handleRemoveSkill(id: string) {
+      setMySkills(oldSate => oldSate.filter(
+        skill => skill.id !== id
+      ))   
+  }
+
 
   useEffect(() => {
     const currentHour = new Date().getHours();
@@ -43,8 +59,14 @@ export function Home() {
 
       <FlatList // renderiza poucos itens de cada vez - ScrollView rederiza todos
         data={mySkills}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <SkillCard skill={item} />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => 
+       
+        <SkillCard 
+          skill={item.name} 
+          onPress={() => handleRemoveSkill(item.id)}
+          />
+        }
       />
     </View>
   );
